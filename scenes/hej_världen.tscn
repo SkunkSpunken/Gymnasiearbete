@@ -58,12 +58,12 @@ tile_map_data = PackedByteArray("AAAYAAUABAAFAAEAAAAZAAUABAAFAAEAAAAaAAUABAAFAAE
 tile_set = ExtResource("1_kqv71")
 
 [node name="Player" parent="." instance=ExtResource("2_uakfl")]
-position = Vector2(168, 172)
+position = Vector2(144, 174)
 
 [node name="House Trigger" type="Area2D" parent="."]
 script = ExtResource("3_uakfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House Trigger"]
 z_index = 1
-position = Vector2(152, 140)
+position = Vector2(152, 139)
 shape = SubResource("RectangleShape2D_kqv71")
