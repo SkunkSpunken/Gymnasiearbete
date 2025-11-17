@@ -34,38 +34,3 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = velocity.move_toward(direction*MAX_SPEED, ACC*delta)
 	move_and_slide()
-
-
-"""
-var direction_name = "down"
-
-
-func _update_direction(direction: Vector2) -> void:
-	if direction == Vector2.ZERO:
-		return
-	if abs(direction.x) > abs(direction.y):
-		if direction.x > 0:
-			direction_name = "right"
-		else:
-			direction_name = "left"
-	else:
-		if direction.y > 0:
-			direction_name = "down"
-		else:
-			direction_name = "up"
-
-
-
-func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = velocity.move_toward(direction*MAX_SPEED, ACC*delta)
-	move_and_slide()
-
-
-
-
-
-func die():
-	hide()
-	emit_signal("dead")
-"""
