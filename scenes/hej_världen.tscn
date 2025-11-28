@@ -1,11 +1,17 @@
-[gd_scene load_steps=13 format=4 uid="uid://byebmqy2bepx8"]
+[gd_scene load_steps=20 format=4 uid="uid://byebmqy2bepx8"]
 
-[ext_resource type="TileSet" uid="uid://lxs5yk1unqu8" path="res://tilesets/game_tile_set.tres" id="1_kqv71"]
+[ext_resource type="TileSet" uid="uid://lxs5yk1unqu8" path="res://tilesets/Ground.tres" id="1_kqv71"]
+[ext_resource type="TileSet" uid="uid://dd3myxg3hf4js" path="res://tilesets/Nature.tres" id="2_sjsbh"]
 [ext_resource type="PackedScene" uid="uid://bqm1ljeecy5y4" path="res://scenes/gubbe.tscn" id="2_uakfl"]
+[ext_resource type="TileSet" uid="uid://d2paajssqy7le" path="res://tilesets/Walls.tres" id="3_57kie"]
+[ext_resource type="TileSet" uid="uid://bq3el12abrlxb" path="res://tilesets/Bridge.tres" id="3_q7siw"]
 [ext_resource type="Script" uid="uid://c5y4k7eobx4ag" path="res://Scripts/bridge_trigger.gd" id="3_u1eg5"]
 [ext_resource type="Script" uid="uid://07br541w5nyb" path="res://Scripts/house_trigger.gd" id="3_uakfl"]
 [ext_resource type="Script" uid="uid://cuwvdt58ub8ot" path="res://Scripts/under_bridge_trigger.gd" id="5_cjb6e"]
 [ext_resource type="PackedScene" uid="uid://gnqssihdh2o2" path="res://scenes/chicken.tscn" id="6_6ss0g"]
+[ext_resource type="Script" uid="uid://b6b8w3xe20afd" path="res://Scripts/jarleif.gd" id="10_57kie"]
+
+[sub_resource type="GDScript" id="GDScript_q7siw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cjb6e"]
 radius = 5.0
@@ -17,23 +23,30 @@ height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ss0g"]
 radius = 6.0
-height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v160n"]
 radius = 6.0
-height = 36.0
+height = 42.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqv71"]
 size = Vector2(52, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ss0g"]
-size = Vector2(16, 29)
+size = Vector2(14, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v160n"]
+size = Vector2(26, 17)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sjsbh"]
+radius = 2.99998
+height = 10.0
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Tilemaps" type="Node2D" parent="."]
 y_sort_enabled = true
+script = SubResource("GDScript_q7siw")
 
 [node name="Water" type="TileMapLayer" parent="Tilemaps"]
 z_index = -4096
@@ -45,7 +58,7 @@ tile_map_data = PackedByteArray("AAAEAAYAAQAAAAAAAAAFAAYAAQABAAAAAAAGAAYAAQABAAA
 tile_set = ExtResource("1_kqv71")
 
 [node name="Hills" type="TileMapLayer" parent="Tilemaps"]
-tile_map_data = PackedByteArray("AAAcABMABwACAAIAAAAcABIABwACAAEAAAAbABIABwABAAUAAAAbABEABwABAAEAAAAcABEABwACAAEAAAAbABAABwABAAUAAAAaABAABwAFAAYAAAAZABAABwABAAEAAAAZABEABwABAAEAAAAYABEABwAFAAUAAAAXABEABwAGAAEAAAAWABEABwAAAAIAAAAYABIABwAGAAEAAAAXABIABwAAAAIAAAAaABEABwACAAUAAAAXABAABwAAAAUAAAAYABAABwABAAEAAAAZAA8ABwABAAEAAAAaAA8ABwABAAEAAAAbAA8ABwACAAEAAAAbAA4ABwACAAAAAAAaAA4ABwAAAAUAAAAcABAABwACAAAAAAAYAA8ABwABAAEAAAAWABAABwAAAAEAAAAZAA4ABwAFAAUAABAYAA4ABwABAAUAAAAYAA0ABwAFAAYAAAAZAA0ABwAFAAIAAAAXAA8ABwAFAAYAAAAXAA4ABwAGAAIAAAAYABMABwAAAAIAAAAWAA8ABwAAAAEAAAAXAA0ABwAAAAEAAAAYAAwABwABAAAAAAAZAAwABwACAAAAAAAaAA0ABwACAAAAAAAXAAwABwAAAAAAAAAWAA4ABwAAAAAAAAAbABMABwABAAIAAAAZABIABwAAAAUAAAAaABIABwAFAAUAABAZABMABwAJAAUAAAAaABMABwAKAAUAAAAZABQABwAJAAYAAAAaABQABwAKAAYAAAAXAAcABwAAAAIAAAAYAAcABwABAAIAAAAZAAcABwABAAIAAAAaAAcABwACAAIAAAAaAAYABwAFAAEAAAAbAAYABwACAAIAAAAbAAUABwAFAAEAAAAaAAUABwABAAEAAAAaAAQABwABAAEAAAAZAAQABwABAAEAAAAYAAQABwABAAEAAAAXAAQABwABAAEAAAAXAAUABwABAAEAAAAWAAUABwAAAAEAAAAWAAYABwAAAAIAAAAXAAYABwAGAAEAAAAYAAYABwABAAEAAAAZAAYABwABAAEAAAAZAAUABwABAAEAAAAYAAUABwABAAEAAAAZAAMABwABAAEAAAAaAAMABwABAAEAAAAbAAMABwABAAEAAAAbAAQABwABAAEAAAAcAAQABwAJAAQAAAAdAAQABwAKAAQAAAAdAAUABwAKAAUAAAAcAAUABwAJAAUAAAAeAAUABwACAAIAAAAeAAQABwACAAEAAAAeAAMABwACAAAAAAAdAAMABwABAAAAAAAcAAMABwAFAAIAAAAcAAIABwACAAAAAAAbAAIABwABAAAAAAAaAAIABwABAAAAAAAZAAIABwAFAAIAAAAYAAIABwAGAAIAAAAYAAMABwABAAEAAAAXAAMABwABAAEAAAAWAAQABwAGAAEAAAAWAAMABwAGAAIAAAAWAAIABwAAAAAAAAAXAAIABwABAAAAAAAVAAMABwAAAAAAAAAVAAQABwAAAAIAAAAYAAEABwAAAAAAAAAZAAEABwACAAAAAAAdAAYABwAKAAYAAAAcAAYABwAJAAYAAAA=")
+tile_map_data = PackedByteArray("AAAcABMABwACAAIAAAAcABIABwACAAEAAAAbABIABwABAAUAAAAbABEABwABAAEAAAAcABEABwACAAEAAAAbABAABwAFAAIAAAAaABAABwAFAAYAAAAZABAABwABAAEAAAAZABEABwABAAEAAAAYABEABwAFAAUAAAAXABEABwAGAAEAAAAWABEABwAAAAIAAAAYABIABwAGAAEAAAAXABIABwAAAAIAAAAaABEABwACAAUAAAAXABAABwAAAAUAAAAYABAABwABAAEAAAAZAA8ABwABAAEAAAAaAA8ABwABAAEAAAAbAA8ABwACAAEAAAAbAA4ABwACAAAAAAAaAA4ABwAAAAUAAAAcABAABwACAAAAAAAYAA8ABwABAAEAAAAWABAABwAAAAEAAAAZAA4ABwAFAAUAABAYAA4ABwABAAUAAAAYAA0ABwAFAAYAAAAZAA0ABwAFAAIAAAAXAA8ABwAFAAYAAAAXAA4ABwAGAAIAAAAYABMABwAAAAIAAAAWAA8ABwAAAAEAAAAXAA0ABwAAAAEAAAAYAAwABwABAAAAAAAZAAwABwACAAAAAAAaAA0ABwACAAAAAAAXAAwABwAAAAAAAAAWAA4ABwAAAAAAAAAbABMABwABAAIAAAAZABIABwAAAAUAAAAaABIABwAFAAUAABAZABMABwAJAAUAAAAaABMABwAKAAUAAAAZABQABwAJAAYAAAAaABQABwAKAAYAAAAXAAcABwAAAAIAAAAYAAcABwABAAIAAAAZAAcABwABAAIAAAAaAAcABwACAAIAAAAaAAYABwAFAAEAAAAbAAYABwACAAIAAAAbAAUABwAFAAEAAAAaAAUABwABAAEAAAAaAAQABwABAAEAAAAZAAQABwABAAEAAAAYAAQABwABAAEAAAAXAAQABwABAAEAAAAXAAUABwABAAEAAAAWAAUABwAAAAEAAAAWAAYABwAAAAIAAAAXAAYABwAGAAEAAAAYAAYABwABAAEAAAAZAAYABwABAAEAAAAZAAUABwABAAEAAAAYAAUABwABAAEAAAAZAAMABwABAAEAAAAaAAMABwABAAEAAAAbAAMABwABAAEAAAAbAAQABwABAAEAAAAcAAQABwAJAAQAAAAdAAQABwAKAAQAAAAdAAUABwAKAAUAAAAcAAUABwAJAAUAAAAeAAUABwACAAIAAAAeAAQABwACAAEAAAAeAAMABwACAAAAAAAdAAMABwABAAAAAAAcAAMABwAFAAIAAAAcAAIABwACAAAAAAAbAAIABwABAAAAAAAaAAIABwABAAAAAAAZAAIABwAFAAIAAAAYAAIABwAGAAIAAAAYAAMABwABAAEAAAAXAAMABwABAAEAAAAWAAQABwAGAAEAAAAWAAMABwAGAAIAAAAWAAIABwAAAAAAAAAXAAIABwABAAAAAAAVAAMABwAAAAAAAAAVAAQABwAAAAIAAAAYAAEABwAAAAAAAAAZAAEABwACAAAAAAAdAAYABwAKAAYAAAAcAAYABwAJAAYAAAA=")
 tile_set = ExtResource("1_kqv71")
 
 [node name="Tiled Dirt" type="TileMapLayer" parent="Tilemaps"]
@@ -55,26 +68,26 @@ tile_set = ExtResource("1_kqv71")
 [node name="Nature1" type="TileMapLayer" parent="Tilemaps"]
 y_sort_enabled = true
 position = Vector2(1, 1)
-tile_map_data = PackedByteArray("AAAFAAYAAwABAAAAAAAJAAYAAwABAAAAAAADAAkAAwAIAAEAAAAFAA8AAwABAAAAAAAKAA8AAwABAAAAAAAMAA4AAwAAAAAAAAAOAA8AAwABAAAAAAANABEAAwAAAAAAAAAJABEAAwABAAMAAAAMAA8AAwABAAMAAAAGABAAAwAIAAEAAAALAA4AAwAIAAEAAAAMABIAAwAHAAEAAAANABMAAwAFAAQAAAAPAA8AAwAFAAQAAAAEABAAAwAFAAQAAAAHABMAAwAIAAQAAAAPABEAAwAIAAQAAAAFAA0AAwAIAAQAAAANAA0AAwAHAAQAAAALABQAAwAHAAQAAAAEAA4AAwAGAAQAAAAFABIAAwAHAAQAAAAKABQAAwAGAAQAAAAHAA4AAwAHAAEAAAAJAA0AAwACAAQAABAIAAkABAABAAIAAAAKAAgABAABAAIAAAAJAAgABAABAAIAAAAJAAkABAABAAIAAAAIAAgABAABAAIAAAAJAAcABAABAAIAAAAXAA4AAwAIAAIAAAAZAA0AAwAIAAIAAAAaAA8AAwAIAAIAAAAYABAAAwAIAAIAAAAbABEAAwAIAAIAAAAWAA8AAwAIAAIAAAAZABEAAwAIAAIAAAAYAAwAAwAIAAIAAAAbAA4AAwAIAAIAAAAZAA8AAwAIAAEAAAA=")
-tile_set = ExtResource("1_kqv71")
+tile_map_data = PackedByteArray("AAADAAkAAwAIAAEAAAAEAA4AAwAGAAQAAAAEABAAAwAFAAQAAAAFAAYAAwABAAAAAAAFAA0AAwAIAAQAAAAFAA8AAwABAAAAAAAFABIAAwAHAAQAAAAGABAAAwAIAAEAAAAHAA4AAwAHAAEAAAAHABMAAwAIAAQAAAAJAAYAAwABAAAAAAAJAA0AAwACAAQAABAJABEAAwABAAMAAAAKAA8AAwABAAAAAAAKABQAAwAGAAQAAAALAA4AAwAIAAEAAAALABQAAwAHAAQAAAAMAA4AAwAAAAAAAAAMAA8AAwABAAMAAAAMABIAAwAHAAEAAAANAA0AAwAHAAQAAAANABEAAwAAAAAAAAANABMAAwAFAAQAAAAOAA8AAwABAAAAAAAPAA8AAwAFAAQAAAAPABEAAwAIAAQAAAAWAA8AAwAIAAIAAAAXAA4AAwAIAAIAAAAYAAwAAwAIAAIAAAAYABAAAwAIAAIAAAAZAA0AAwAIAAIAAAAZAA8AAwAIAAEAAAAZABEAAwAIAAIAAAAaAA8AAwAIAAIAAAAbAA4AAwAIAAIAAAAbABEAAwAIAAIAAAA=")
+tile_set = ExtResource("2_sjsbh")
 
 [node name="floor" type="TileMapLayer" parent="Tilemaps"]
 tile_map_data = PackedByteArray("AAAJAAoACAAAAAIAAAA=")
 tile_set = ExtResource("1_kqv71")
 
 [node name="floor2" type="TileMapLayer" parent="Tilemaps"]
-tile_map_data = PackedByteArray("AAAIAAgABAABAAIAAAAJAAgABAABAAIAAAAKAAgABAABAAIAAAAJAAkABAABAAIAAAAIAAkABAABAAIAAAAJAAoACAAAAAIAAAA=")
+tile_map_data = PackedByteArray("AAAIAAgABAABAAIAAAAJAAgABAABAAIAAAAKAAgABAABAAIAAAAJAAkABAABAAIAAAAIAAkABAABAAIAAAAJAAoACAAAAAIAAAAKAAkABAABAAIAAAA=")
 tile_set = ExtResource("1_kqv71")
 
 [node name="Walls" type="TileMapLayer" parent="Tilemaps"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAJAAcABAABAAEAAAAIAAcABAABAAEAAAAHAAcABAAAAAEAAAAKAAcABAABAAEAAAALAAcABAACAAEAAAALAAgABAACAAIAAAALAAkABAACAAMAAAAHAAkABAAAAAMAAAAIAAkABAABAAAAAAAJAAkABAADAAIAAAAHAAgABAAAAAIAAAAKAAkABAABAAAAAAA=")
-tile_set = ExtResource("1_kqv71")
+tile_set = ExtResource("3_57kie")
 
 [node name="Nature2" type="TileMapLayer" parent="Tilemaps"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAMAAkAAwAFAAQAAAAHAAUAAwAFAAQAAAALAAYAAwAHAAQAAAADAAYAAwAIAAQAAAACAAgAAwAFAAQAAAADAAsAAwAGAAQAAAAEAAcAAwABAAAAAAAEAAwAAwAHAAQAAAAGAAgAAwAAAAAAAAAGAAwAAwAFAAQAAAAHAAwAAwAGAAQAAAAJAAwAAwAIAAQAAAALAAsAAwAHAAQAAAA=")
-tile_set = ExtResource("1_kqv71")
+tile_set = ExtResource("2_sjsbh")
 
 [node name="Interior" type="TileMapLayer" parent="Tilemaps"]
 y_sort_enabled = true
@@ -84,12 +97,12 @@ tile_set = ExtResource("1_kqv71")
 tile_set = ExtResource("1_kqv71")
 
 [node name="Bridge" type="TileMapLayer" parent="Tilemaps"]
-tile_map_data = PackedByteArray("AAAIAAsABgABAAAAAAAIAAwABgAAAAEAAAAIAA0ABgABAAIAAAAOABAABgACAAEAAAAPABAABgADAAEAAAAQABAABgADAAEAAAARABAABgAEAAEAAAAYAAwABgABAAIAAAAYAAsABgABAAEAAAAYAAoABgABAAEAAAAYAAkABgABAAEAAAAYAAgABgABAAEAAAAYAAcABgAAAAAAAAA=")
-tile_set = ExtResource("1_kqv71")
+tile_map_data = PackedByteArray("AAAIAAsABgABAAAAAAAIAAwABgAAAAEAAAAIAA0ABgABAAIAAAAOABAABgACAAEAAAAPABAABgADAAEAAAAQABAABgADAAEAAAARABAABgAEAAEAAAAYAAwABgABAAIAAAAYAAsABgABAAEAAAAYAAkABgABAAEAAAAYAAgABgABAAEAAAAYAAcABgAAAAAAAAAYAAoABgABAAEAAAA=")
+tile_set = ExtResource("3_q7siw")
 
 [node name="Player" parent="." instance=ExtResource("2_uakfl")]
 z_index = 0
-position = Vector2(317, 244)
+position = Vector2(150, 262)
 
 [node name="Bridge Trigger" type="Area2D" parent="."]
 script = ExtResource("3_u1eg5")
@@ -110,7 +123,7 @@ position = Vector2(392, 187)
 shape = SubResource("CapsuleShape2D_6ss0g")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Bridge Trigger"]
-position = Vector2(392, 129)
+position = Vector2(392, 131)
 shape = SubResource("CapsuleShape2D_v160n")
 
 [node name="House Trigger" type="Area2D" parent="."]
@@ -125,12 +138,47 @@ shape = SubResource("RectangleShape2D_kqv71")
 script = ExtResource("5_cjb6e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Under Bridge Trigger"]
-position = Vector2(392.5, 185)
+position = Vector2(393, 185)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_6ss0g")
 
-[node name="Chicken" parent="." instance=ExtResource("6_6ss0g")]
-position = Vector2(316, 274)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Under Bridge Trigger"]
+position = Vector2(392, 134.5)
+shape = SubResource("RectangleShape2D_v160n")
+
+[node name="Animals" type="Node2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="Chicken1" parent="Animals" instance=ExtResource("6_6ss0g")]
+position = Vector2(166, 263)
+
+[node name="Chicken2" parent="Animals" instance=ExtResource("6_6ss0g")]
+position = Vector2(181, 266)
+
+[node name="Chicken3" parent="Animals" instance=ExtResource("6_6ss0g")]
+position = Vector2(192, 268)
+
+[node name="Chicken4" parent="Animals" instance=ExtResource("6_6ss0g")]
+position = Vector2(202, 270)
+
+[node name="Chicken5" parent="Animals" instance=ExtResource("6_6ss0g")]
+position = Vector2(227, 265)
+
+[node name="Jarleif" type="Area2D" parent="."]
+script = ExtResource("10_57kie")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Jarleif"]
+
+[node name="TextureRect" type="TextureRect" parent="Jarleif/CanvasLayer"]
+offset_left = 389.0
+offset_top = 225.0
+offset_right = 429.0
+offset_bottom = 265.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jarleif"]
+position = Vector2(409, 256)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sjsbh")
 
 [connection signal="body_entered" from="Bridge Trigger" to="Bridge Trigger" method="_on_body_entered"]
 [connection signal="body_exited" from="Bridge Trigger" to="Bridge Trigger" method="_on_body_exited"]
@@ -138,3 +186,5 @@ position = Vector2(316, 274)
 [connection signal="body_exited" from="House Trigger" to="House Trigger" method="_on_body_exited"]
 [connection signal="body_entered" from="Under Bridge Trigger" to="Under Bridge Trigger" method="_on_body_entered"]
 [connection signal="body_exited" from="Under Bridge Trigger" to="Under Bridge Trigger" method="_on_body_exited"]
+[connection signal="body_entered" from="Jarleif" to="Jarleif" method="_on_body_entered"]
+[connection signal="body_exited" from="Jarleif" to="Jarleif" method="_on_body_exited"]

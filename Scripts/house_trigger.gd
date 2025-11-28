@@ -2,9 +2,7 @@ extends Area2D
 
 @onready var roof_layer = $"../Tilemaps/Roof"
 
-func _ready():
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
+
 
 func _on_body_entered(body):
 	if body.name == "Player":
