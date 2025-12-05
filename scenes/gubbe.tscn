@@ -1,6 +1,6 @@
 [gd_scene load_steps=46 format=3 uid="uid://bqm1ljeecy5y4"]
 
-[ext_resource type="Script" uid="uid://b45r56t7g61cl" path="res://Scripts/gubbe.gd" id="1_g2brh"]
+[ext_resource type="Script" uid="uid://b45r56t7g61cl" path="res://scripts/gubbe.gd" id="1_g2brh"]
 [ext_resource type="Texture2D" uid="uid://dx8i8vf1yfw5q" path="res://assets/characters/Basic Charakter Actions.png" id="2_k3ldw"]
 [ext_resource type="Texture2D" uid="uid://c3tiixkj6a3nb" path="res://assets/characters/Basic Charakter Spritesheet.png" id="2_pv732"]
 

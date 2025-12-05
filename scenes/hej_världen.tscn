@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=4 uid="uid://byebmqy2bepx8"]
+[gd_scene load_steps=21 format=4 uid="uid://byebmqy2bepx8"]
 
 [ext_resource type="TileSet" uid="uid://lxs5yk1unqu8" path="res://tilesets/Ground.tres" id="1_kqv71"]
 [ext_resource type="TileSet" uid="uid://dd3myxg3hf4js" path="res://tilesets/Nature.tres" id="2_sjsbh"]
 [ext_resource type="PackedScene" uid="uid://bqm1ljeecy5y4" path="res://scenes/gubbe.tscn" id="2_uakfl"]
 [ext_resource type="TileSet" uid="uid://d2paajssqy7le" path="res://tilesets/Walls.tres" id="3_57kie"]
 [ext_resource type="TileSet" uid="uid://bq3el12abrlxb" path="res://tilesets/Bridge.tres" id="3_q7siw"]
-[ext_resource type="Script" uid="uid://c5y4k7eobx4ag" path="res://Scripts/bridge_trigger.gd" id="3_u1eg5"]
-[ext_resource type="Script" uid="uid://07br541w5nyb" path="res://Scripts/house_trigger.gd" id="3_uakfl"]
-[ext_resource type="Script" uid="uid://cuwvdt58ub8ot" path="res://Scripts/under_bridge_trigger.gd" id="5_cjb6e"]
+[ext_resource type="Script" uid="uid://c5y4k7eobx4ag" path="res://scripts/bridge_trigger.gd" id="3_u1eg5"]
+[ext_resource type="Script" uid="uid://07br541w5nyb" path="res://scripts/house_trigger.gd" id="3_uakfl"]
+[ext_resource type="Script" uid="uid://cuwvdt58ub8ot" path="res://scripts/under_bridge_trigger.gd" id="5_cjb6e"]
 [ext_resource type="PackedScene" uid="uid://gnqssihdh2o2" path="res://scenes/chicken.tscn" id="6_6ss0g"]
-[ext_resource type="Script" uid="uid://b6b8w3xe20afd" path="res://Scripts/jarleif.gd" id="10_57kie"]
+[ext_resource type="Script" uid="uid://b6b8w3xe20afd" path="res://scripts/jarleif.gd" id="10_57kie"]
+[ext_resource type="PackedScene" uid="uid://b4q4337u2hfta" path="res://scenes/cow.tscn" id="10_cyqd0"]
 
 [sub_resource type="GDScript" id="GDScript_q7siw"]
 
@@ -163,6 +164,9 @@ position = Vector2(202, 270)
 
 [node name="Chicken5" parent="Animals" instance=ExtResource("6_6ss0g")]
 position = Vector2(227, 265)
+
+[node name="Cow1" parent="Animals" instance=ExtResource("10_cyqd0")]
+position = Vector2(125, 240)
 
 [node name="Jarleif" type="Area2D" parent="."]
 script = ExtResource("10_57kie")

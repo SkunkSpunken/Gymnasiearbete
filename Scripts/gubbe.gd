@@ -11,12 +11,18 @@ enum{IDLE, WALK, USE_ITEM}
 
 @onready var _animated_sprite = $AnimatedSprite2D
 
+
+
 ################ MOVEMENT ################
 
 func _movement(delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = velocity.move_toward(direction*MAX_SPEED, ACC*delta)
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Hotbar1"):
+		pass
 
 ################ STATE MACHINE ################
 
@@ -40,12 +46,11 @@ func _physics_process(delta: float) -> void:
 
 ################ STATES ################
 
-func _idle_state(delta):
+func _idle_state(_delta):
 	_animated_sprite.play("Idle_" + last_direction)
 
 func _walk_state(delta):
 	var dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-
 	if dir.y < 0:
 		_animated_sprite.play("Up")
 		last_direction = "Up"
@@ -58,12 +63,9 @@ func _walk_state(delta):
 	elif dir.x < 0:
 		_animated_sprite.play("Left")
 		last_direction = "Left"
-
 	_movement(delta)
 
-
-
-func _use_item_state(delta):
+func _use_item_state(_delta):
 	pass
 
 
@@ -86,40 +88,3 @@ func _dissable_player_collision():
 
 func _enable_player_collision():
 	set_collision_mask_value(3, true)
-
-
-
-
-
-
-
-
-"""
-
-################ MOVEMENT ################
-func _process(_delta):
-	if Input.is_action_pressed("ui_up"):
-		_animated_sprite.play("Up")
-		last_direction = "Up"
-		
-	elif Input.is_action_pressed("ui_down"):
-		_animated_sprite.play("Down")
-		last_direction = "Down"
-		
-	elif Input.is_action_pressed("ui_right"):
-		_animated_sprite.play("Right")
-		last_direction = "Right"
-		
-	elif Input.is_action_pressed("ui_left"):
-		_animated_sprite.play("Left")
-		last_direction = "Left"
-		
-	else:
-		_animated_sprite.play("Idle_" + last_direction)
-
-func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = velocity.move_toward(direction*MAX_SPEED, ACC*delta)
-	move_and_slide()
-
-"""

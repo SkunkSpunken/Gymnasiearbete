@@ -6,6 +6,7 @@ extends Area2D
 
 @export var player: Player
 @export var chicken: Chicken
+@export var cow: Cow
 
 
 
@@ -15,8 +16,10 @@ func _on_body_entered(body: Node2D) -> void:
 		body._dissable_player_collision()
 		under_bridge_trigger.monitoring = false
 	elif body is Chicken:
-		print("Chicken entered the trigger zone!")  # Debugging message
 		body._dissable_chicken_collision()
+		under_bridge_trigger.monitoring = false
+	elif body is Cow:
+		body._dissable_cow_collision()
 		under_bridge_trigger.monitoring = false
 
 func _on_body_exited(body: Node2D) -> void:
@@ -24,6 +27,8 @@ func _on_body_exited(body: Node2D) -> void:
 		body._enable_player_collision()
 		under_bridge_trigger.monitoring = true
 	elif body is Chicken:
-		print("Chicken exited the trigger zone!")  # Debugging message
 		body._enable_chicken_collision()
+		under_bridge_trigger.monitoring = true
+	elif body is Cow:
+		body._enable_cow_collision()
 		under_bridge_trigger.monitoring = true

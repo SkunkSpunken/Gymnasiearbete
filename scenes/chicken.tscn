@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://gnqssihdh2o2"]
 
-[ext_resource type="Script" uid="uid://c7rdsln631pyi" path="res://Scripts/chicken.gd" id="1_1yv3s"]
+[ext_resource type="Script" uid="uid://c7rdsln631pyi" path="res://scripts/chicken.gd" id="1_1yv3s"]
 [ext_resource type="Texture2D" uid="uid://c8tmpd6soahu5" path="res://assets/characters/Free Chicken Sprites.png" id="1_lj8jo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nutj5"]

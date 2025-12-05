@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmfij5jjjavye"]
+
+[ext_resource type="Texture2D" uid="uid://ckjcxc1wtaqj2" path="res://assets/hotbar/Basic tools and meterials_r1_c2_processed_by_imagy.png" id="1_onmbr"]
+[ext_resource type="Script" uid="uid://bpcsa5ti6vsx5" path="res://scripts/hotbar_button.gd" id="2_ljrnn"]
+
+[node name="HotbarButton" type="Button"]
+icon = ExtResource("1_onmbr")
+script = ExtResource("2_ljrnn")

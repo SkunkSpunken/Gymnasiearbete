@@ -16,7 +16,7 @@ func _walk() -> void:
 	velocity = dir * MAX_SPEED
 	move_and_slide()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_walk()
 	if velocity.x > 0:
 		_animated_sprite.flip_h = false
@@ -33,8 +33,8 @@ func _on_timer_timeout() -> void:
 	_timer.start()
 
 ################ COLLISIONS ################
-func _dissable_player_collision():
+func _dissable_chicken_collision():
 	set_collision_mask_value(3, false)
 
-func _enable_player_collision():
+func _enable_chicken_collision():
 	set_collision_mask_value(3, true)
