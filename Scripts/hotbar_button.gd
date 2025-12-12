@@ -1,11 +1,21 @@
 extends Button
 
+@onready var _button1 = $"."
+@onready var _button2 = $"../HotbarButton2"
+@onready var _button3 = $"../HotbarButton3"
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _input(event):
+	if event.is_action_pressed("Hotbar1"):
+		_button1.set_pressed(true)
+		_button2.set_pressed(false)
+		_button3.set_pressed(false)
 
+	if event.is_action_pressed("Hotbar2"):
+		_button2.set_pressed(true)
+		_button3.set_pressed(false)
+		_button1.set_pressed(false)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	if event.is_action_pressed("Hotbar3"):
+		_button3.set_pressed(true)
+		_button2.set_pressed(false)
+		_button1.set_pressed(false)

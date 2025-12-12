@@ -63,8 +63,8 @@ script = ExtResource("1_fgglk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gly4w")
-animation = &"Idle"
-frame_progress = 0.418727
+animation = &"Walk"
+frame_progress = 0.494142
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)

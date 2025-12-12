@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://0sxf8rk0npaw" path="res://assets/hotbar/Basic tools and meterials_r1_c1_processed_by_imagy.png" id="4_wm3ai"]
 
 [node name="Ui" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,28 +17,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nt7q6")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -40.0
-offset_top = -28.0
+offset_top = -39.0
 offset_right = 40.0
-offset_bottom = -4.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 columns = 3
 
-[node name="HotbarButton" parent="GridContainer" instance=ExtResource("2_x4jx1")]
+[node name="HotbarButton" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+toggle_mode = true
+keep_pressed_outside = true
 
-[node name="HotbarButton2" parent="GridContainer" instance=ExtResource("2_x4jx1")]
+[node name="HotbarButton2" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+toggle_mode = true
+keep_pressed_outside = true
 icon = ExtResource("3_gdt2y")
 
-[node name="HotbarButton3" parent="GridContainer" instance=ExtResource("2_x4jx1")]
+[node name="HotbarButton3" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+toggle_mode = true
+keep_pressed_outside = true
 icon = ExtResource("4_wm3ai")

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Cow
 
-const MAX_SPEED = 20
+const MAX_SPEED = 10
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var _timer = $Timer

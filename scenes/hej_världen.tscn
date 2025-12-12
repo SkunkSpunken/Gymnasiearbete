@@ -166,7 +166,7 @@ position = Vector2(202, 270)
 position = Vector2(227, 265)
 
 [node name="Cow1" parent="Animals" instance=ExtResource("10_cyqd0")]
-position = Vector2(125, 240)
+position = Vector2(314, 250)
 
 [node name="Jarleif" type="Area2D" parent="."]
 script = ExtResource("10_57kie")
