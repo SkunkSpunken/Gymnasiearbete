@@ -1,7 +1,7 @@
 extends Area2D
 
-@onready var bridge_layer: TileMapLayer = $"../Tilemaps/Bridge"
-@onready var nature_layer: TileMapLayer = $"../Tilemaps/Nature1"
+@onready var bridge_layer: TileMapLayer = $"../YSortTimemaps/Bridge"
+@onready var nature_layer: TileMapLayer = $"../YSortTimemaps/Nature2"
 @onready var bridge_trigger: Area2D = $"../Bridge Trigger"
 
 func _on_body_entered(body: Node2D) -> void:

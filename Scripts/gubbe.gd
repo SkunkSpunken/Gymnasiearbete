@@ -12,14 +12,17 @@ enum{IDLE, WALK, AXE, HOE, WATERINGCAN}
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var _timer = $UseStateTimer
+@onready var _hoe_timer = $HoeTimer
+@onready var _tilemap = $"../Tilemaps/Tiled Dirt"
 
 
 ################ MOVEMENT ################
 
 func _movement(delta: float) -> void:
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = velocity.move_toward(direction*MAX_SPEED, ACC*delta)
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = velocity.move_toward(input_dir * MAX_SPEED, ACC * delta)
 	move_and_slide()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Hotbar1"):
@@ -64,7 +67,6 @@ func _physics_process(delta: float) -> void:
 			_hoe_state(delta)
 		WATERINGCAN:
 			_wateringcan_state(delta)
-	print(state, active_item)
 
 
 ################ STATES ################
@@ -123,12 +125,16 @@ func _enter_hoe_state():
 	_timer.start()
 	if last_direction == "Up":
 		_animated_sprite.play("Hoe_Up")
+		_change_tile_when_hoe()
 	elif last_direction == "Down":
 		_animated_sprite.play("Hoe_Down")
+		_change_tile_when_hoe()
 	elif last_direction == "Left":
 		_animated_sprite.play("Hoe_Left")
+		_change_tile_when_hoe()
 	elif last_direction == "Right":
 		_animated_sprite.play("Hoe_Right")
+		_change_tile_when_hoe()
 
 func _enter_wateringcan_state():
 	state = WATERINGCAN
@@ -142,6 +148,36 @@ func _enter_wateringcan_state():
 	elif last_direction == "Right":
 		_animated_sprite.play("Water_Right")
 
+func _change_tile_when_hoe():
+	var offset_world = Vector2.ZERO
+
+	if last_direction == "Right":
+		offset_world = Vector2(16, 0)
+	elif last_direction == "Left":
+		offset_world = Vector2(-16, 0)
+	elif last_direction == "Up":
+		offset_world = Vector2(0, -16)
+	else:
+		offset_world = Vector2(0, 16)
+
+	var world_pos = global_position + offset_world
+	var target_tile = _tilemap.local_to_map(world_pos)
+
+	var terrain_set = 0
+	var terrain_id = 1
+
+	_tilemap.set_cells_terrain_connect([target_tile], 0, 1)
+
+func _facing_offset() -> Vector2i:
+	if last_direction == "Right":
+		return Vector2i(1, 0)
+	if last_direction == "Left":
+		return Vector2i(-1, 0)
+	if last_direction == "Up":
+		return Vector2i(0, -1)
+	return Vector2i(0, 1)
+
+
 
 ################ COLLISIONS BAJS ################
 
@@ -151,35 +187,8 @@ func _dissable_player_collision():
 func _enable_player_collision():
 	set_collision_mask_value(3, true)
 
-"""
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if _animated_sprite.animation == "Axe_Up":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Axe_Down":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Axe_Left":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Axe_Right":
-		_enter_idle_state()
-	
-	if _animated_sprite.animation == "Hoe_Up":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Hoe_Down":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Hoe_Left":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Hoe_Right":
-		_enter_idle_state()
-	
-	if _animated_sprite.animation == "Water_Up":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Water_Down":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Water_Left":
-		_enter_idle_state()
-	elif _animated_sprite.animation == "Water_Right":
-		_enter_idle_state()
-"""
-
 func _on_use_state_timer_timeout() -> void:
+	_enter_idle_state()
+
+func _on_hoe_timer_timeout() -> void:
 	_enter_idle_state()
