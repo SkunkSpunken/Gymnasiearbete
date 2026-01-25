@@ -400,7 +400,7 @@ script = ExtResource("1_g2brh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_8ixgp")
-animation = &"Hoe_Down"
+animation = &"Idle_Down"
 
 [node name="Camera2D" type="Camera2D" parent="AnimatedSprite2D"]
 scale = Vector2(0.49, 0.49)

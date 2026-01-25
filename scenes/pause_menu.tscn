@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr7pjnkrdscrm"]
+
+[ext_resource type="Script" uid="uid://el3pgf1e34a" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="FontFile" uid="uid://moclicr75yg6" path="res://assets/fonts/ByteBounce.ttf" id="2_kukqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d2l8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myx47"]
+bg_color = Color(0, 0, 0, 0.607843)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kukqi"]
+bg_color = Color(0, 0, 0, 0.705882)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l7mv"]
+bg_color = Color(0, 0, 0, 0.352941)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_myx47")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -75.0
+offset_right = 90.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = -70.0
+offset_right = 65.5
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 50
+text = "Paused"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -27.0
+offset_right = 60.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5d2l8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_myx47")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kukqi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7l7mv")
+text = "Resume"
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5d2l8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_myx47")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kukqi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7l7mv")
+text = "Main Menu"
+icon_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button2" to="." method="_on_main_menu_pressed"]

@@ -6,18 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://0sxf8rk0npaw" path="res://assets/hotbar/Basic tools and meterials_r1_c1_processed_by_imagy.png" id="4_wm3ai"]
 
 [node name="Ui" type="Control"]
-visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_nt7q6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -25,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -39.0
-offset_right = 40.0
-offset_bottom = -15.0
+offset_left = -60.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
