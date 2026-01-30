@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4h0q6lpegovd"]
+[gd_scene load_steps=6 format=3 uid="uid://4h0q6lpegovd"]
 
 [ext_resource type="Script" uid="uid://cr18mxbq6e130" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="PackedScene" uid="uid://bmfij5jjjavye" path="res://scenes/hotbar_button.tscn" id="2_x4jx1"]
 [ext_resource type="Texture2D" uid="uid://dn1ybke1fuavp" path="res://assets/hotbar/Basic tools and meterials_r1_c3_processed_by_imagy.png" id="3_gdt2y"]
 [ext_resource type="Texture2D" uid="uid://0sxf8rk0npaw" path="res://assets/hotbar/Basic tools and meterials_r1_c1_processed_by_imagy.png" id="4_wm3ai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdt2y"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -17,7 +19,6 @@ grow_vertical = 0
 script = ExtResource("1_nt7q6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -32,21 +33,26 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 0
 columns = 3
 
 [node name="HotbarButton" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
 toggle_mode = true
 keep_pressed_outside = true
 
 [node name="HotbarButton2" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
 toggle_mode = true
 keep_pressed_outside = true
 icon = ExtResource("3_gdt2y")
 
 [node name="HotbarButton3" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
 toggle_mode = true
 keep_pressed_outside = true
 icon = ExtResource("4_wm3ai")

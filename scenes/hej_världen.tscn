@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://byebmqy2bepx8"]
+[gd_scene load_steps=23 format=4 uid="uid://byebmqy2bepx8"]
 
 [ext_resource type="TileSet" uid="uid://lxs5yk1unqu8" path="res://tilesets/Ground.tres" id="1_kqv71"]
 [ext_resource type="TileSet" uid="uid://dd3myxg3hf4js" path="res://tilesets/Nature.tres" id="2_sjsbh"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b6b8w3xe20afd" path="res://scripts/jarleif.gd" id="10_57kie"]
 [ext_resource type="PackedScene" uid="uid://b4q4337u2hfta" path="res://scenes/cow.tscn" id="10_cyqd0"]
 [ext_resource type="PackedScene" uid="uid://dr7pjnkrdscrm" path="res://scenes/pause_menu.tscn" id="12_ojnl0"]
+[ext_resource type="PackedScene" uid="uid://4h0q6lpegovd" path="res://scenes/ui.tscn" id="13_sr2w3"]
 
 [sub_resource type="GDScript" id="GDScript_q7siw"]
 
@@ -188,7 +189,12 @@ position = Vector2(409, 256)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sjsbh")
 
-[node name="PauseMenu" parent="." instance=ExtResource("12_ojnl0")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_ojnl0")]
+
+[node name="Ui" parent="." instance=ExtResource("13_sr2w3")]
 
 [connection signal="body_entered" from="Bridge Trigger" to="Bridge Trigger" method="_on_body_entered"]
 [connection signal="body_exited" from="Bridge Trigger" to="Bridge Trigger" method="_on_body_exited"]

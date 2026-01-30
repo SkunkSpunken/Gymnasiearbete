@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0kgyragilu68"]
+[gd_scene load_steps=11 format=3 uid="uid://d0kgyragilu68"]
 
 [ext_resource type="Script" uid="uid://dhbk45xw6ouue" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://moclicr75yg6" path="res://assets/fonts/ByteBounce.ttf" id="1_l6cm7"]
@@ -54,6 +54,8 @@ shadow_color = Color(0, 0, 0, 0.333333)
 shadow_size = 3
 shadow_offset = Vector2(1, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_l6cm7"]
 font = ExtResource("1_l6cm7")
 font_size = 75
@@ -70,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ekxnf")
 
 [node name="Panel" type="Panel" parent="."]
@@ -79,6 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_l6cm7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -118,7 +122,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dvdtt")
-text = "Gibber Man"
+text = "Play"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
@@ -138,10 +142,11 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_l6cm7")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dvdtt")
-text = "Gitter Man"
+text = "Exit Game"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
