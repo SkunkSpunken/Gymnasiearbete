@@ -7,6 +7,7 @@ const ACC = 5000
 var last_direction = "Down"
 var state = IDLE
 var active_item = IDLE
+var hoed_tiles := {}
 
 enum{IDLE, WALK, AXE, HOE, WATERINGCAN}
 
@@ -123,22 +124,23 @@ func _enter_axe_state():
 func _enter_hoe_state():
 	state = HOE
 	_timer.start()
+	
 	if last_direction == "Up":
 		_animated_sprite.play("Hoe_Up")
-		_change_tile_when_hoe()
 	elif last_direction == "Down":
 		_animated_sprite.play("Hoe_Down")
-		_change_tile_when_hoe()
 	elif last_direction == "Left":
 		_animated_sprite.play("Hoe_Left")
-		_change_tile_when_hoe()
 	elif last_direction == "Right":
 		_animated_sprite.play("Hoe_Right")
-		_change_tile_when_hoe()
+	
+	await get_tree().create_timer(0.8).timeout
+	_change_tile_when_hoe()
 
 func _enter_wateringcan_state():
 	state = WATERINGCAN
 	_timer.start()
+	
 	if last_direction == "Up":
 		_animated_sprite.play("Water_Up")
 	elif last_direction == "Down":
@@ -147,26 +149,58 @@ func _enter_wateringcan_state():
 		_animated_sprite.play("Water_Left")
 	elif last_direction == "Right":
 		_animated_sprite.play("Water_Right")
+	
+	await get_tree().create_timer(1).timeout
+	_water_tile_if_hoed()
 
 func _change_tile_when_hoe():
 	var offset_world = Vector2.ZERO
-
+	
 	if last_direction == "Right":
-		offset_world = Vector2(16, 0)
+		offset_world = Vector2(10, 0)
 	elif last_direction == "Left":
-		offset_world = Vector2(-16, 0)
+		offset_world = Vector2(-10, 0)
 	elif last_direction == "Up":
-		offset_world = Vector2(0, -16)
-	else:
-		offset_world = Vector2(0, 16)
-
+		offset_world = Vector2(0, -10)
+	else:                 #"Down"
+		offset_world = Vector2(0, 10)
+	
 	var world_pos = global_position + offset_world
 	var target_tile = _tilemap.local_to_map(world_pos)
-
+	
 	var terrain_set = 0
 	var terrain_id = 1
+	
+	hoed_tiles[target_tile] = true
 
 	_tilemap.set_cells_terrain_connect([target_tile], 0, 1)
+
+func _water_tile_if_hoed():
+	var offset_world = Vector2.ZERO
+	
+	if last_direction == "Right":
+		offset_world = Vector2(10, 0)
+	elif last_direction == "Left":
+		offset_world = Vector2(-10, 0)
+	elif last_direction == "Up":
+		offset_world = Vector2(0, -10)
+	else:                 #"Down"
+		offset_world = Vector2(0, 10)
+		
+	var world_pos = global_position + offset_world
+	var target_tile = _tilemap.local_to_map(world_pos)
+	
+	var terrain_set = 0
+	var terrain_id = 1
+	
+	if not hoed_tiles.has(target_tile):
+		return
+
+	var tile_data: TileData = _tilemap.get_cell_tile_data(target_tile)
+	if tile_data == null:
+		return
+
+	tile_data.modulate = Color(0.6, 0.6, 0.6)
 
 func _facing_offset() -> Vector2i:
 	if last_direction == "Right":
