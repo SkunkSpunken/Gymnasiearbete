@@ -1,8 +1,16 @@
 extends CharacterBody2D
 class_name Player
 
+######### PLAYER CONST ###########
 const MAX_SPEED = 60
 const ACC = 5000
+
+############ TREE CONST #############
+const TREE_LAYER = 0
+const SOURCE_ID = 0
+
+const TREE_TILE = Vector2i(3, 1)
+const STUMP_TILE  = Vector2i(4, 2)
 
 var last_direction = "Down"
 var state = IDLE
@@ -14,7 +22,9 @@ enum{IDLE, WALK, AXE, HOE, WATERINGCAN}
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var _timer = $UseStateTimer
 @onready var _hoe_timer = $HoeTimer
-@onready var _tilemap = $"../Tilemaps/Tiled Dirt"
+@onready var _tiled_dirt = $"../Tilemaps/Tiled Dirt"
+@onready var _trees = $"../YSortTimemaps/Trees"
+
 
 
 ################ MOVEMENT ################
@@ -46,6 +56,7 @@ func _input(event: InputEvent) -> void:
 				_enter_wateringcan_state()
 
 
+
 ################ STATE MACHINE ################
 
 func _physics_process(delta: float) -> void:
@@ -68,6 +79,7 @@ func _physics_process(delta: float) -> void:
 			_hoe_state(delta)
 		WATERINGCAN:
 			_wateringcan_state(delta)
+
 
 
 ################ STATES ################
@@ -101,6 +113,8 @@ func _hoe_state(_delta):
 func _wateringcan_state(_delta):
 	pass
 
+
+
 ################ ENTER STATE ################
 
 func _enter_idle_state():
@@ -120,6 +134,11 @@ func _enter_axe_state():
 		_animated_sprite.play("Axe_Left")
 	elif last_direction == "Right":
 		_animated_sprite.play("Axe_Right")
+	
+	
+	
+	await get_tree().create_timer(1).timeout
+	_axe_tree()
 
 func _enter_hoe_state():
 	state = HOE
@@ -153,6 +172,30 @@ func _enter_wateringcan_state():
 	await get_tree().create_timer(1).timeout
 	_water_tile_if_hoed()
 
+
+
+################ STATE FUNCTIONS ################
+
+func _axe_tree():
+	var player_cell = _trees.local_to_map(_trees.to_local(global_position))
+	
+	for y in range(-1, 2):
+		for x in range(-1, 2):
+			var check_cell = player_cell + Vector2i(x, y)
+			var source = _trees.get_cell_source_id(check_cell)
+			
+			if source != -1:
+				print("Tree found at:", check_cell)
+				_trees.erase_cell(check_cell)
+				_place_stump(check_cell)
+				return
+
+
+func _place_stump(cell: Vector2i):
+	_trees.set_cell(cell, 0, STUMP_TILE)
+	print(_trees.get_cell_source_id(cell))
+
+
 func _change_tile_when_hoe():
 	var offset_world = Vector2.ZERO
 	
@@ -161,19 +204,19 @@ func _change_tile_when_hoe():
 	elif last_direction == "Left":
 		offset_world = Vector2(-10, 0)
 	elif last_direction == "Up":
-		offset_world = Vector2(0, -10)
+		offset_world = Vector2(0, -8)
 	else:                 #"Down"
-		offset_world = Vector2(0, 10)
+		offset_world = Vector2(0, 8)
 	
 	var world_pos = global_position + offset_world
-	var target_tile = _tilemap.local_to_map(world_pos)
-	
-	var terrain_set = 0
-	var terrain_id = 1
+	var target_tile = _tiled_dirt.local_to_map(world_pos)
 	
 	hoed_tiles[target_tile] = true
+	
+	_tiled_dirt.set_cells_terrain_connect([target_tile], 0, 1)
 
-	_tilemap.set_cells_terrain_connect([target_tile], 0, 1)
+
+
 
 func _water_tile_if_hoed():
 	var offset_world = Vector2.ZERO
@@ -183,33 +226,30 @@ func _water_tile_if_hoed():
 	elif last_direction == "Left":
 		offset_world = Vector2(-10, 0)
 	elif last_direction == "Up":
-		offset_world = Vector2(0, -10)
+		offset_world = Vector2(0, -8)
 	else:                 #"Down"
-		offset_world = Vector2(0, 10)
+		offset_world = Vector2(0, 8)
 		
 	var world_pos = global_position + offset_world
-	var target_tile = _tilemap.local_to_map(world_pos)
-	
-	var terrain_set = 0
-	var terrain_id = 1
+	var target_tile = _tiled_dirt.local_to_map(world_pos)
 	
 	if not hoed_tiles.has(target_tile):
 		return
 
-	var tile_data: TileData = _tilemap.get_cell_tile_data(target_tile)
+	var tile_data: TileData = _tiled_dirt.get_cell_tile_data(target_tile)
 	if tile_data == null:
 		return
 
-	tile_data.modulate = Color(0.6, 0.6, 0.6)
+	tile_data.modulate = Color(0.8, 0.8, 0.8)
 
 func _facing_offset() -> Vector2i:
-	if last_direction == "Right":
-		return Vector2i(1, 0)
+	if last_direction == "Up":
+		return Vector2i(0, -2)
+	if last_direction == "Down":
+		return Vector2i(0, 1)
 	if last_direction == "Left":
 		return Vector2i(-1, 0)
-	if last_direction == "Up":
-		return Vector2i(0, -1)
-	return Vector2i(0, 1)
+	return Vector2i(1, 0)
 
 
 

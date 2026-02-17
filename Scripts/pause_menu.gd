@@ -1,8 +1,13 @@
 extends Control
 
+
 func _ready() -> void:
 	visible = false
-	
+
+
+func _process(_delta):
+	_esc()
+
 
 func _resume():
 	get_tree().paused = false
@@ -30,7 +35,7 @@ func _on_resume_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	
 
-func _process(_delta):
-	_esc()
+
+func _on_settings_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/settings.tscn")

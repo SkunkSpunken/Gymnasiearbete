@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://byebmqy2bepx8"]
+[gd_scene load_steps=23 format=4 uid="uid://byebmqy2bepx8"]
 
 [ext_resource type="TileSet" uid="uid://lxs5yk1unqu8" path="res://tilesets/Ground.tres" id="1_kqv71"]
 [ext_resource type="TileSet" uid="uid://dd3myxg3hf4js" path="res://tilesets/Nature.tres" id="2_sjsbh"]
@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://b4q4337u2hfta" path="res://scenes/cow.tscn" id="10_cyqd0"]
 [ext_resource type="PackedScene" uid="uid://cotu4vn2k0n6x" path="res://scenes/jarleif.tscn" id="11_sr2w3"]
 [ext_resource type="PackedScene" uid="uid://dr7pjnkrdscrm" path="res://scenes/pause_menu.tscn" id="12_ojnl0"]
-[ext_resource type="PackedScene" uid="uid://4h0q6lpegovd" path="res://scenes/ui.tscn" id="13_sr2w3"]
+[ext_resource type="PackedScene" uid="uid://4h0q6lpegovd" path="res://scenes/hotbar.tscn" id="13_sr2w3"]
+[ext_resource type="AudioStream" uid="uid://wcgjpljqx3b3" path="res://audio/Legend of Zelda_ Twilight Princess HD OST - Ordon Village (1).mp3" id="14_7dxr8"]
 
 [sub_resource type="GDScript" id="GDScript_q7siw"]
 
@@ -83,7 +84,7 @@ tile_set = ExtResource("2_sjsbh")
 [node name="Nature2" type="TileMapLayer" parent="YSortTimemaps"]
 y_sort_enabled = true
 position = Vector2(1, 1)
-tile_map_data = PackedByteArray("AAADAAkAAwAIAAEAAAAFAAYAAwABAAAAAAAFAA8AAwABAAAAAAAGABAAAwAIAAEAAAAHAA4AAwAHAAEAAAAJAAYAAwABAAAAAAAJAA0AAwACAAQAABAJABEAAwABAAMAAAAKAA8AAwABAAAAAAALAA4AAwAIAAEAAAAMAA4AAwAAAAAAAAAMAA8AAwABAAMAAAAMABIAAwAHAAEAAAANABEAAwAAAAAAAAAOAA8AAwABAAAAAAAWAA8AAwAIAAIAAAAXAA4AAwAIAAIAAAAYAAwAAwAIAAIAAAAYABAAAwAIAAIAAAAZAA0AAwAIAAIAAAAZAA8AAwAIAAEAAAAZABEAAwAIAAIAAAAaAA8AAwAIAAIAAAAbAA4AAwAIAAIAAAAbABEAAwAIAAIAAAAGAAgAAwAAAAAAAAAEAAgAAwABAAAAAAAWAAUAAwAIAAIAAAAXAAQAAwAIAAIAAAAZAAMAAwAIAAIAAAAaAAUAAwAIAAIAAAAYAAYAAwAIAAIAAAAdAAQAAwAIAAIAAAAYAAIAAwAIAAIAAAASAAUAAwAAAAAAAAAUAAcAAwAAAAAAAAAeAAgAAwAAAAAAAAAfAAYAAwABAAAAAAAbAAcAAwABAAAAAAAUAAMAAwABAAAAAAAUAAgAAwAHAAEAAAAUAAQAAwAIAAEAAAAfAAUAAwAIAAEAAAAcAAgAAwAHAAEAAAATAAYAAwADAAIAAAAWAAIAAwAHAAEAAAA=")
+tile_map_data = PackedByteArray("AAAGABAAAwAIAAEAAAAHAA4AAwAHAAEAAAALAA4AAwAIAAEAAAAMABIAAwAHAAEAAAAWAA8AAwAIAAIAAAAXAA4AAwAIAAIAAAAYAAwAAwAIAAIAAAAYABAAAwAIAAIAAAAZAA0AAwAIAAIAAAAZAA8AAwAIAAEAAAAZABEAAwAIAAIAAAAaAA8AAwAIAAIAAAAbAA4AAwAIAAIAAAAbABEAAwAIAAIAAAAWAAUAAwAIAAIAAAAXAAQAAwAIAAIAAAAZAAMAAwAIAAIAAAAaAAUAAwAIAAIAAAAYAAYAAwAIAAIAAAAYAAIAAwAIAAIAAAAUAAgAAwAHAAEAAAAUAAQAAwAIAAEAAAAfAAUAAwAIAAEAAAAcAAgAAwAHAAEAAAAWAAIAAwAHAAEAAADf/wYAAwABAAAAAADf/wcAAwAEAAIAAADe/wcAAwACAAQAAADh/wcAAwAAAAQAAADj/wcAAwADAAIAAADj/wYAAwAAAAAAAAAFAAoAAwAIAAEAAAA=")
 tile_set = ExtResource("2_sjsbh")
 
 [node name="Roof" type="TileMapLayer" parent="YSortTimemaps"]
@@ -92,6 +93,11 @@ tile_set = ExtResource("1_kqv71")
 [node name="Bridge" type="TileMapLayer" parent="YSortTimemaps"]
 tile_map_data = PackedByteArray("AAAIAAsABgABAAAAAAAIAAwABgAAAAEAAAAIAA0ABgABAAIAAAAOABAABgACAAEAAAAPABAABgADAAEAAAAQABAABgADAAEAAAARABAABgAEAAEAAAAYAAwABgABAAIAAAAYAAsABgABAAEAAAAYAAkABgABAAEAAAAYAAgABgABAAEAAAAYAAcABgAAAAAAAAAYAAoABgABAAEAAAA=")
 tile_set = ExtResource("3_q7siw")
+
+[node name="Trees" type="TileMapLayer" parent="YSortTimemaps"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAKAA8AAwABAAAAAAAFAA8AAwABAAAAAAAOAA8AAwABAAAAAAAJAAYAAwABAAAAAAAFAAYAAwABAAAAAAAbAAcAAwABAAAAAAAfAAYAAwABAAAAAAAUAAMAAwABAAAAAAANABEAAwAAAAAAAAAMAA4AAwAAAAAAAAAGAAgAAwAAAAAAAAAUAAcAAwAAAAAAAAASAAUAAwAAAAAAAAAeAAgAAwAAAAAAAAAcAAQAAwAAAAQAABAJAA0AAwACAAQAABAKABQAAwAAAAAAAAAIABAAAwAAAAAAAAAEAAkAAwABAAAAAAA=")
+tile_set = ExtResource("2_sjsbh")
 
 [node name="Walls" type="TileMapLayer" parent="YSortTimemaps"]
 y_sort_enabled = true
@@ -111,6 +117,7 @@ position = Vector2(136, 199.5)
 shape = SubResource("CapsuleShape2D_cjb6e")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Bridge Trigger"]
+visible = false
 z_index = 1
 position = Vector2(255, 264)
 rotation = 1.5708
@@ -178,7 +185,13 @@ process_mode = 3
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_ojnl0")]
 
-[node name="Ui" parent="." instance=ExtResource("13_sr2w3")]
+[node name="Hotbar" parent="." instance=ExtResource("13_sr2w3")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_7dxr8")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="Bridge Trigger" to="Bridge Trigger" method="_on_body_entered"]
 [connection signal="body_exited" from="Bridge Trigger" to="Bridge Trigger" method="_on_body_exited"]

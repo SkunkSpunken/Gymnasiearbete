@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://nog0bkd5ruq4"
+path="res://.godot/imported/Dire Straits - Walk Of Life (Instrumental).mp3-ca181a815a49e1fca65d46463c5bf473.mp3str"
+
+[deps]
+
+source_file="res://audio/Dire Straits - Walk Of Life (Instrumental).mp3"
+dest_files=["res://.godot/imported/Dire Straits - Walk Of Life (Instrumental).mp3-ca181a815a49e1fca65d46463c5bf473.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

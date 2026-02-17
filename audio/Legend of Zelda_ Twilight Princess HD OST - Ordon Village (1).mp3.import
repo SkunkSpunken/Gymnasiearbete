@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wcgjpljqx3b3"
+path="res://.godot/imported/Legend of Zelda_ Twilight Princess HD OST - Ordon Village (1).mp3-114333b0db7d3633dffb8a7b6b740052.mp3str"
+
+[deps]
+
+source_file="res://audio/Legend of Zelda_ Twilight Princess HD OST - Ordon Village (1).mp3"
+dest_files=["res://.godot/imported/Legend of Zelda_ Twilight Princess HD OST - Ordon Village (1).mp3-114333b0db7d3633dffb8a7b6b740052.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
