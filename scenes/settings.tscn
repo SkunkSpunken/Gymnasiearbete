@@ -1,17 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2iivkmkdl8eg"]
+[gd_scene load_steps=8 format=3 uid="uid://c2iivkmkdl8eg"]
 
-[ext_resource type="Script" uid="uid://crkwul2wmckwx" path="res://scripts/settings.gd" id="1_5p8wc"]
+[ext_resource type="PackedScene" uid="uid://pdfmsm6frp51" path="res://scenes/h_slider.tscn" id="1_5p8wc"]
+[ext_resource type="Script" uid="uid://cx2s08kdym8wx" path="res://scripts/settings_menu.gd" id="1_6wm04"]
+[ext_resource type="FontFile" uid="uid://moclicr75yg6" path="res://assets/fonts/ByteBounce.ttf" id="2_f4mfi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wm04"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4mfi"]
+bg_color = Color(0.722555, 0.722554, 0.722555, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es4n0"]
+bg_color = Color(0.529067, 0.529067, 0.529067, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gis3k"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Settings" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6wm04")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,10 +75,87 @@ offset_right = 219.5
 offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.431373)
+color = Color(0.0943044, 0.0943044, 0.0943044, 0.431373)
 
-[node name="HSlider" type="HSlider" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 16.0
-script = ExtResource("1_5p8wc")
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -84.5
+offset_right = 125.0
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label Master" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f4mfi")
+theme_override_font_sizes/font_size = 32
+text = "Master"
+horizontal_alignment = 1
+
+[node name="Master" parent="VBoxContainer" instance=ExtResource("1_5p8wc")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Label Music" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f4mfi")
+theme_override_font_sizes/font_size = 32
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Music" parent="VBoxContainer" instance=ExtResource("1_5p8wc")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="Label SFX" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f4mfi")
+theme_override_font_sizes/font_size = 32
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SFX" parent="VBoxContainer" instance=ExtResource("1_5p8wc")]
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 70.0
+offset_right = 108.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f4mfi")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6wm04")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f4mfi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_es4n0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gis3k")
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

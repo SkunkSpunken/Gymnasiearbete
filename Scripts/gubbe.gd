@@ -192,7 +192,7 @@ func _axe_tree():
 
 
 func _place_stump(cell: Vector2i):
-	_trees.set_cell(cell, 0, STUMP_TILE)
+	_trees.set_cell(cell, 0 , STUMP_TILE)
 	print(_trees.get_cell_source_id(cell))
 
 
