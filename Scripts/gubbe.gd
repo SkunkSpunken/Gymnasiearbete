@@ -9,7 +9,7 @@ const ACC = 5000
 const TREE_LAYER = 0
 const SOURCE_ID = 0
 
-const TREE_TILE = Vector2i(3, 1)
+const TREE_TILE = Vector2i(0, 0)
 const STUMP_TILE  = Vector2i(4, 2)
 
 var last_direction = "Down"
@@ -192,7 +192,7 @@ func _axe_tree():
 
 
 func _place_stump(cell: Vector2i):
-	_trees.set_cell(cell, 0 , STUMP_TILE)
+	_trees.set_cell(cell, 3, STUMP_TILE)
 	print(_trees.get_cell_source_id(cell))
 
 
