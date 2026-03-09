@@ -1,58 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://4h0q6lpegovd"]
+[gd_scene load_steps=5 format=3 uid="uid://4h0q6lpegovd"]
 
 [ext_resource type="Script" uid="uid://cr18mxbq6e130" path="res://scripts/hotbar.gd" id="1_nt7q6"]
-[ext_resource type="PackedScene" uid="uid://bmfij5jjjavye" path="res://scenes/hotbar_button.tscn" id="2_x4jx1"]
-[ext_resource type="Texture2D" uid="uid://dn1ybke1fuavp" path="res://assets/hotbar/Basic tools and meterials_r1_c3_processed_by_imagy.png" id="3_gdt2y"]
-[ext_resource type="Texture2D" uid="uid://0sxf8rk0npaw" path="res://assets/hotbar/Basic tools and meterials_r1_c1_processed_by_imagy.png" id="4_wm3ai"]
+[ext_resource type="Theme" uid="uid://bgfcmxmhhoquk" path="res://game_ui_theme.tres" id="2_wceku"]
+[ext_resource type="PackedScene" uid="uid://dwfvoxl7sw7re" path="res://scenes/tools_panel.tscn" id="3_xrqkv"]
+[ext_resource type="PackedScene" uid="uid://cfnjer6n88c8t" path="res://scenes/item_panel.tscn" id="4_2n1yv"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdt2y"]
-
-[node name="Hotbar" type="Control"]
+[node name="Ui" type="Control"]
 layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
+anchors_preset = 0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 script = ExtResource("1_nt7q6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Hotbar" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="CanvasLayer" type="CanvasLayer" parent="Hotbar"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Hotbar/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = -16.0
 grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 0
-columns = 3
+grow_vertical = 2
+theme = ExtResource("2_wceku")
 
-[node name="HotbarButton" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
+[node name="ToolsPanel" parent="Hotbar/CanvasLayer/MarginContainer" instance=ExtResource("3_xrqkv")]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
-toggle_mode = true
-keep_pressed_outside = true
+size_flags_vertical = 8
 
-[node name="HotbarButton2" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
-layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
-toggle_mode = true
-keep_pressed_outside = true
-icon = ExtResource("3_gdt2y")
+[node name="Inventory" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="HotbarButton3" parent="CanvasLayer/GridContainer" instance=ExtResource("2_x4jx1")]
+[node name="CanvasLayer" type="CanvasLayer" parent="Inventory"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wceku")
+
+[node name="InventoryPanel" parent="Inventory/CanvasLayer/MarginContainer" instance=ExtResource("4_2n1yv")]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
-toggle_mode = true
-keep_pressed_outside = true
-icon = ExtResource("4_wm3ai")
+size_flags_horizontal = 0
+size_flags_vertical = 0

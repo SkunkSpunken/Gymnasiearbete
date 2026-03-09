@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfnjer6n88c8t"]
+
+[ext_resource type="Theme" uid="uid://bgfcmxmhhoquk" path="res://game_ui_theme.tres" id="1_7gh1m"]
+[ext_resource type="Texture2D" uid="uid://5u6wrpsjt75g" path="res://assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Sprite sheet for Basic Pack.png" id="2_rf2vg"]
+[ext_resource type="Texture2D" uid="uid://do02dxiykbsmj" path="res://assets/objects/Basic tools and meterials.png" id="3_8fmeu"]
+[ext_resource type="FontFile" uid="uid://moclicr75yg6" path="res://assets/fonts/ByteBounce.ttf" id="4_hbcrx"]
+[ext_resource type="Texture2D" uid="uid://bsa136u7uxgnr" path="res://assets/objects/Basic_Plants.png" id="5_wmk6p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf2vg"]
+atlas = ExtResource("2_rf2vg")
+region = Rect2(11, 107, 26, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksbjx"]
+atlas = ExtResource("3_8fmeu")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y542b"]
+font = ExtResource("4_hbcrx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73b2n"]
+atlas = ExtResource("5_wmk6p")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e7us"]
+atlas = ExtResource("5_wmk6p")
+region = Rect2(80, 16, 16, 16)
+
+[node name="ItemPanel" type="PanelContainer"]
+theme = ExtResource("1_7gh1m")
+theme_type_variation = &"DarkWoodPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Wood" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rf2vg")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Wood"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 23.0
+offset_bottom = 23.0
+texture = SubResource("AtlasTexture_ksbjx")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wood"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 28.0
+offset_bottom = 42.0
+text = "00
+"
+label_settings = SubResource("LabelSettings_y542b")
+horizontal_alignment = 2
+
+[node name="Wheat" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rf2vg")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Wheat"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 23.0
+offset_bottom = 23.0
+texture = SubResource("AtlasTexture_73b2n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wheat"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 28.0
+offset_bottom = 42.0
+text = "00
+"
+label_settings = SubResource("LabelSettings_y542b")
+horizontal_alignment = 2
+
+[node name="Tomato" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rf2vg")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Tomato"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 23.0
+offset_bottom = 23.0
+texture = SubResource("AtlasTexture_4e7us")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Tomato"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 28.0
+offset_bottom = 42.0
+text = "00
+"
+label_settings = SubResource("LabelSettings_y542b")
+horizontal_alignment = 2

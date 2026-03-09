@@ -191,7 +191,7 @@ position = Vector2(314, 250)
 
 [node name="Jarleif" parent="." instance=ExtResource("11_sr2w3")]
 
-[node name="Hotbar" parent="." instance=ExtResource("13_sr2w3")]
+[node name="GUI" parent="." instance=ExtResource("13_sr2w3")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3

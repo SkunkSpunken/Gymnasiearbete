@@ -15,9 +15,11 @@ const STUMP_TILE  = Vector2i(4, 2)
 var last_direction = "Down"
 var state = IDLE
 var active_item = IDLE
-var hoed_tiles := {}
 
-enum{IDLE, WALK, AXE, HOE, WATERINGCAN}
+var hoed_tiles := {}
+var watered_tiles := {}
+
+enum{IDLE, WALK, AXE, HOE, WATERINGCAN, WHEATSEED, TOMATOSEED}
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var _timer = $UseStateTimer
@@ -54,6 +56,10 @@ func _input(event: InputEvent) -> void:
 				_enter_hoe_state()
 			WATERINGCAN:
 				_enter_wateringcan_state()
+			WHEATSEED:
+				_enter_wheatseed_state()
+			TOMATOSEED:
+				_enter_tomatoseed_state()
 
 
 
@@ -79,6 +85,10 @@ func _physics_process(delta: float) -> void:
 			_hoe_state(delta)
 		WATERINGCAN:
 			_wateringcan_state(delta)
+		WHEATSEED:
+			_wheatseed_state(delta)
+		TOMATOSEED:
+			_tomatoseed_state(delta)
 
 
 
@@ -111,6 +121,12 @@ func _hoe_state(_delta):
 	pass
 
 func _wateringcan_state(_delta):
+	pass
+
+func _wheatseed_state(_delta):
+	pass
+
+func _tomatoseed_state(delta):
 	pass
 
 
@@ -172,6 +188,11 @@ func _enter_wateringcan_state():
 	await get_tree().create_timer(1).timeout
 	_water_tile_if_hoed()
 
+func _enter_wheatseed_state():
+	pass
+
+func _enter_tomatoseed_state():
+	pass
 
 
 ################ STATE FUNCTIONS ################
@@ -214,7 +235,6 @@ func _change_tile_when_hoe():
 	hoed_tiles[target_tile] = true
 	
 	_tiled_dirt.set_cells_terrain_connect([target_tile], 0, 1)
-
 
 
 

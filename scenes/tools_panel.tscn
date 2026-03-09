@@ -1,0 +1,208 @@
+[gd_scene load_steps=25 format=3 uid="uid://dwfvoxl7sw7re"]
+
+[ext_resource type="Theme" uid="uid://bgfcmxmhhoquk" path="res://game_ui_theme.tres" id="1_j0qoy"]
+[ext_resource type="PackedScene" uid="uid://bmfij5jjjavye" path="res://scenes/hotbar_button.tscn" id="2_7ddvt"]
+[ext_resource type="Texture2D" uid="uid://d0jrmws2r5lsx" path="res://assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/buttons/Square Buttons 26x26.png" id="3_ggvah"]
+[ext_resource type="Script" uid="uid://c7a7rinwl6ixf" path="res://scripts/hotbar_button_pressed.gd" id="4_cvjdc"]
+[ext_resource type="Texture2D" uid="uid://dbf1iowtgbglu" path="res://assets/objects/Basic_tools_and_meterials.png" id="5_iwufj"]
+[ext_resource type="Script" uid="uid://ds100n3b7ceks" path="res://scripts/hotbar_icon_spirte.gd" id="6_oou48"]
+[ext_resource type="Texture2D" uid="uid://bsa136u7uxgnr" path="res://assets/objects/Basic_Plants.png" id="7_w3msp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbjko"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ewps"]
+texture = SubResource("AtlasTexture_mbjko")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 0, 4)
+modulate_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhbbb"]
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iapdy"]
+atlas = ExtResource("3_ggvah")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i62wn"]
+atlas = ExtResource("3_ggvah")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nekah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iapdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i62wn")
+}],
+"loop": true,
+"name": &"hotbar_button",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nekah"]
+atlas = ExtResource("5_iwufj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdt2y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ewps"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhbbb"]
+atlas = ExtResource("5_iwufj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p213"]
+atlas = ExtResource("5_iwufj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ewps"]
+atlas = ExtResource("5_iwufj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymyrg"]
+atlas = ExtResource("5_iwufj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wceku"]
+atlas = ExtResource("7_w3msp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c3f6"]
+atlas = ExtResource("7_w3msp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70wi1"]
+atlas = ExtResource("7_w3msp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixfkr"]
+atlas = ExtResource("7_w3msp")
+region = Rect2(0, 16, 16, 16)
+
+[node name="ToolsPanel" type="PanelContainer"]
+offset_right = 178.0
+offset_bottom = 52.0
+size_flags_horizontal = 4
+theme = ExtResource("1_j0qoy")
+theme_type_variation = &"DarkWoodPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HotbarButton1" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_7ddvt")]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewps")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhbbb")
+toggle_mode = true
+keep_pressed_outside = true
+icon_alignment = 1
+
+[node name="HotbarButtonSprite" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/HotbarButton1"]
+z_as_relative = false
+position = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_nekah")
+animation = &"hotbar_button"
+script = ExtResource("4_cvjdc")
+
+[node name="HotbarIconSpirte" type="Sprite2D" parent="MarginContainer/HBoxContainer/HotbarButton1"]
+position = Vector2(12, 12)
+texture = SubResource("AtlasTexture_nekah")
+script = ExtResource("6_oou48")
+
+[node name="HotbarButton2" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_7ddvt")]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gdt2y")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_1ewps")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewps")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhbbb")
+toggle_mode = true
+keep_pressed_outside = true
+icon = SubResource("AtlasTexture_uhbbb")
+
+[node name="HotbarButtonSprite2" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/HotbarButton2"]
+z_as_relative = false
+position = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_nekah")
+animation = &"hotbar_button"
+script = ExtResource("4_cvjdc")
+
+[node name="HotbarIconSpirte2" type="Sprite2D" parent="MarginContainer/HBoxContainer/HotbarButton2"]
+position = Vector2(12, 12)
+texture = SubResource("AtlasTexture_4p213")
+script = ExtResource("6_oou48")
+
+[node name="HotbarButton3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_7ddvt")]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewps")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhbbb")
+toggle_mode = true
+keep_pressed_outside = true
+icon = SubResource("AtlasTexture_1ewps")
+
+[node name="HotbarButtonSprite3" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/HotbarButton3"]
+z_as_relative = false
+position = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_nekah")
+animation = &"hotbar_button"
+script = ExtResource("4_cvjdc")
+
+[node name="HotbarIconSpirte3" type="Sprite2D" parent="MarginContainer/HBoxContainer/HotbarButton3"]
+position = Vector2(12, 12)
+texture = SubResource("AtlasTexture_ymyrg")
+script = ExtResource("6_oou48")
+
+[node name="HotbarButton4" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_7ddvt")]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewps")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhbbb")
+toggle_mode = true
+keep_pressed_outside = true
+icon = SubResource("AtlasTexture_wceku")
+
+[node name="HotbarButtonSprite4" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/HotbarButton4"]
+z_as_relative = false
+position = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_nekah")
+animation = &"hotbar_button"
+script = ExtResource("4_cvjdc")
+
+[node name="HotbarIconSpirte4" type="Sprite2D" parent="MarginContainer/HBoxContainer/HotbarButton4"]
+position = Vector2(12, 12)
+texture = SubResource("AtlasTexture_3c3f6")
+script = ExtResource("6_oou48")
+
+[node name="HotbarButton5" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_7ddvt")]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewps")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhbbb")
+toggle_mode = true
+keep_pressed_outside = true
+icon = SubResource("AtlasTexture_70wi1")
+
+[node name="HotbarButtonSprite5" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/HotbarButton5"]
+z_as_relative = false
+position = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_nekah")
+animation = &"hotbar_button"
+script = ExtResource("4_cvjdc")
+
+[node name="HotbarIconSpirte5" type="Sprite2D" parent="MarginContainer/HBoxContainer/HotbarButton5"]
+position = Vector2(12, 12)
+texture = SubResource("AtlasTexture_ixfkr")
+script = ExtResource("6_oou48")
