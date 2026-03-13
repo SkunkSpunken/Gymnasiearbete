@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfnjer6n88c8t"]
+[gd_scene load_steps=14 format=3 uid="uid://cfnjer6n88c8t"]
 
 [ext_resource type="Theme" uid="uid://bgfcmxmhhoquk" path="res://game_ui_theme.tres" id="1_7gh1m"]
 [ext_resource type="Texture2D" uid="uid://5u6wrpsjt75g" path="res://assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Sprite sheet for Basic Pack.png" id="2_rf2vg"]
 [ext_resource type="Texture2D" uid="uid://do02dxiykbsmj" path="res://assets/objects/Basic tools and meterials.png" id="3_8fmeu"]
+[ext_resource type="Script" uid="uid://bu6fntod6pfh" path="res://scripts/items.gd" id="3_hbcrx"]
 [ext_resource type="FontFile" uid="uid://moclicr75yg6" path="res://assets/fonts/ByteBounce.ttf" id="4_hbcrx"]
 [ext_resource type="Texture2D" uid="uid://bsa136u7uxgnr" path="res://assets/objects/Basic_Plants.png" id="5_wmk6p"]
+[ext_resource type="Texture2D" uid="uid://cbncvv6u7x5cw" path="res://assets/Collectibles/diamond/3.png" id="7_wmk6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rf2vg"]
 atlas = ExtResource("2_rf2vg")
@@ -24,6 +26,10 @@ region = Rect2(80, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4e7us"]
 atlas = ExtResource("5_wmk6p")
 region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y542b"]
+atlas = ExtResource("7_wmk6p")
+margin = Rect2(0, 0, 0, 34)
 
 [node name="ItemPanel" type="PanelContainer"]
 theme = ExtResource("1_7gh1m")
@@ -52,16 +58,17 @@ offset_right = 23.0
 offset_bottom = 23.0
 texture = SubResource("AtlasTexture_ksbjx")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wood"]
+[node name="WoodLabel" type="Label" parent="MarginContainer/HBoxContainer/Wood"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 17.0
-offset_right = 28.0
-offset_bottom = 42.0
-text = "00
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 25.0
+offset_bottom = 41.0
+text = "0
 "
 label_settings = SubResource("LabelSettings_y542b")
 horizontal_alignment = 2
+script = ExtResource("3_hbcrx")
 
 [node name="Wheat" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -75,16 +82,17 @@ offset_right = 23.0
 offset_bottom = 23.0
 texture = SubResource("AtlasTexture_73b2n")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wheat"]
+[node name="WheatLabel" type="Label" parent="MarginContainer/HBoxContainer/Wheat"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 17.0
-offset_right = 28.0
-offset_bottom = 42.0
-text = "00
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 25.0
+offset_bottom = 41.0
+text = "0
 "
 label_settings = SubResource("LabelSettings_y542b")
 horizontal_alignment = 2
+script = ExtResource("3_hbcrx")
 
 [node name="Tomato" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -98,13 +106,37 @@ offset_right = 23.0
 offset_bottom = 23.0
 texture = SubResource("AtlasTexture_4e7us")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Tomato"]
+[node name="TomatoLabel" type="Label" parent="MarginContainer/HBoxContainer/Tomato"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 17.0
-offset_right = 28.0
-offset_bottom = 42.0
-text = "00
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 25.0
+offset_bottom = 41.0
+text = "0
 "
 label_settings = SubResource("LabelSettings_y542b")
 horizontal_alignment = 2
+script = ExtResource("3_hbcrx")
+
+[node name="Diamond" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rf2vg")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Diamond"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_y542b")
+
+[node name="DiamondLabel" type="Label" parent="MarginContainer/HBoxContainer/Diamond"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 25.0
+offset_bottom = 41.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_y542b")
+horizontal_alignment = 2
+script = ExtResource("3_hbcrx")

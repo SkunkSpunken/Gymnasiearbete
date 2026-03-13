@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2fc70rcex7td"]
+
+[ext_resource type="Texture2D" uid="uid://bwcenhfx642se" path="res://assets/characters/Bunny_Idle.png" id="1_0k7p5"]
+[ext_resource type="Script" uid="uid://dpxu41848vrcj" path="res://scripts/old_man.gd" id="1_5643s"]
+[ext_resource type="PackedScene" uid="uid://bl4ssu2soeuvi" path="res://scenes/npc_talk.tscn" id="3_hdlgl"]
+[ext_resource type="PackedScene" uid="uid://1meloftoqyb3" path="res://scenes/sell.tscn" id="4_33qua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5643s"]
+atlas = ExtResource("1_0k7p5")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdlgl"]
+atlas = ExtResource("1_0k7p5")
+region = Rect2(48, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33qua"]
+atlas = ExtResource("1_0k7p5")
+region = Rect2(96, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67335"]
+atlas = ExtResource("1_0k7p5")
+region = Rect2(144, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isgn0"]
+atlas = ExtResource("1_0k7p5")
+region = Rect2(192, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm8um"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5643s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdlgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33qua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67335")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isgn0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0k7p5"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_33qua"]
+radius = 9.0
+
+[node name="OldMan" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 17
+script = ExtResource("1_5643s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jm8um")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0k7p5")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_33qua")
+
+[node name="Talk" parent="." instance=ExtResource("3_hdlgl")]
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 44.0
+offset_bottom = 45.0
+
+[node name="Sell" parent="." instance=ExtResource("4_33qua")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 41.0
+offset_bottom = 45.0
+scale = Vector2(0.6, 0.6)
+
+[connection signal="body_entered" from="Area2D" to="." method="_talk_npc"]
+[connection signal="body_exited" from="Area2D" to="." method="_no_talk_anymore"]

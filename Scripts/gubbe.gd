@@ -12,12 +12,19 @@ const SOURCE_ID = 0
 const TREE_TILE = Vector2i(0, 0)
 const STUMP_TILE  = Vector2i(4, 2)
 
+############# PLAYER VAR ##############
 var last_direction = "Down"
 var state = IDLE
 var active_item = IDLE
 
+############# TILES VAR ##############
 var hoed_tiles := {}
 var watered_tiles := {}
+var planted_tiles = {}
+
+############## PLANT CROPS VAR ###############
+var wheat_scene = preload("res://scenes/wheat.tscn")
+var tomato_scene = preload("res://scenes/tomato.tscn")
 
 enum{IDLE, WALK, AXE, HOE, WATERINGCAN, WHEATSEED, TOMATOSEED}
 
@@ -46,6 +53,12 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("Hotbar3"):
 		active_item = WATERINGCAN
+		
+	if event.is_action_pressed("Hotbar4"):
+		active_item = WHEATSEED
+		
+	if event.is_action_pressed("Hotbar5"):
+		active_item = TOMATOSEED
 		
 	if event.is_action_pressed("UseItem"):
 		
@@ -189,10 +202,32 @@ func _enter_wateringcan_state():
 	_water_tile_if_hoed()
 
 func _enter_wheatseed_state():
-	pass
+	state = WHEATSEED
+	
+	if last_direction == "Up":
+		_animated_sprite.play("Water_Up")
+	elif last_direction == "Down":
+		_animated_sprite.play("Water_Down")
+	elif last_direction == "Left":
+		_animated_sprite.play("Water_Left")
+	elif last_direction == "Right":
+		_animated_sprite.play("Water_Right")
+	
+	_plant_wheat()
 
 func _enter_tomatoseed_state():
-	pass
+	state = TOMATOSEED
+	
+	if last_direction == "Up":
+		_animated_sprite.play("Water_Up")
+	elif last_direction == "Down":
+		_animated_sprite.play("Water_Down")
+	elif last_direction == "Left":
+		_animated_sprite.play("Water_Left")
+	elif last_direction == "Right":
+		_animated_sprite.play("Water_Right")
+	
+	_plant_tomato()
 
 
 ################ STATE FUNCTIONS ################
@@ -200,8 +235,8 @@ func _enter_tomatoseed_state():
 func _axe_tree():
 	var player_cell = _trees.local_to_map(_trees.to_local(global_position))
 	
-	for y in range(-1, 2):
-		for x in range(-1, 2):
+	for y in range(-1, 1):
+		for x in range(-1, 1):
 			var check_cell = player_cell + Vector2i(x, y)
 			var source = _trees.get_cell_source_id(check_cell)
 			
@@ -209,6 +244,7 @@ func _axe_tree():
 				print("Tree found at:", check_cell)
 				_trees.erase_cell(check_cell)
 				_place_stump(check_cell)
+				Global.wood += 1
 				return
 
 
@@ -261,6 +297,80 @@ func _water_tile_if_hoed():
 		return
 
 	tile_data.modulate = Color(0.8, 0.8, 0.8)
+
+
+
+func _plant_wheat():
+	var offset_world = Vector2.ZERO
+	
+	if last_direction == "Right":
+		offset_world = Vector2(10, 0)
+	elif last_direction == "Left":
+		offset_world = Vector2(-10, 0)
+	elif last_direction == "Up":
+		offset_world = Vector2(0, -8)
+	else:
+		offset_world = Vector2(0, 8)
+		
+	var world_pos = global_position + offset_world
+	var target_tile = _tiled_dirt.local_to_map(world_pos)
+	
+	if not hoed_tiles.has(target_tile):
+		return
+		
+	if planted_tiles.has(target_tile):
+		print("Crop already here")
+		return
+	
+	var wheat_instance = wheat_scene.instantiate()
+	
+	var tile_world_pos = _tiled_dirt.map_to_local(target_tile)
+	wheat_instance.global_position = tile_world_pos
+	
+	wheat_instance.tile_pos = target_tile
+	wheat_instance.farm_manager = self
+	
+	get_parent().find_child("Crops").add_child(wheat_instance)
+	
+	planted_tiles[target_tile] = wheat_instance
+
+
+
+func _plant_tomato():
+	var offset_world = Vector2.ZERO
+	
+	if last_direction == "Right":
+		offset_world = Vector2(10, 0)
+	elif last_direction == "Left":
+		offset_world = Vector2(-10, 0)
+	elif last_direction == "Up":
+		offset_world = Vector2(0, -8)
+	else:                 #"Down"
+		offset_world = Vector2(0, 8)
+	
+	var world_pos = global_position + offset_world
+	var target_tile = _tiled_dirt.local_to_map(world_pos)
+	
+	if not hoed_tiles.has(target_tile):
+		print("Bajs")
+		return
+		
+	if planted_tiles.has(target_tile):
+		print("Crop already here")
+		return
+	
+	var tomato_instance = tomato_scene.instantiate()
+	
+	var tile_world_pos = _tiled_dirt.map_to_local(target_tile)
+	tomato_instance.global_position = tile_world_pos
+	
+	tomato_instance.tile_pos = target_tile
+	tomato_instance.farm_manager = self
+	
+	get_parent().find_child("Crops").add_child(tomato_instance)
+	
+	planted_tiles[target_tile] = tomato_instance
+
 
 func _facing_offset() -> Vector2i:
 	if last_direction == "Up":

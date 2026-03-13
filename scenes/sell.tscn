@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://1meloftoqyb3"]
+
+[ext_resource type="Texture2D" uid="uid://dt8whwh14c4iu" path="res://assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box big.png" id="1_svkwo"]
+[ext_resource type="FontFile" uid="uid://moclicr75yg6" path="res://assets/fonts/ByteBounce.ttf" id="2_m8b7t"]
+
+[node name="Sell" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 8.0
+offset_right = 39.0
+offset_bottom = 48.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -42.0
+offset_right = 184.0
+offset_bottom = 6.0
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("1_svkwo")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 10.9091
+offset_top = 9.09091
+offset_right = 210.909
+offset_bottom = 34.0909
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m8b7t")
+theme_override_font_sizes/font_size = 16
+text = "Hello what do you want to sell? 
+[1] Wood  [2] Wheat  [3] Tomato"
+
+[node name="Label2" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 10.9091
+offset_top = 30.0
+offset_right = 323.909
+offset_bottom = 55.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m8b7t")
+theme_override_font_sizes/font_size = 16
+text = "1 Wood = 3 Dia  1 Wheat = 1 Dia    1 Tomato = 2 Dia"

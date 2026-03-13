@@ -391,10 +391,10 @@ animations = [{
 radius = 2.0
 height = 6.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
 y_sort_enabled = true
-collision_mask = 30
+collision_mask = 222
 script = ExtResource("1_g2brh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
